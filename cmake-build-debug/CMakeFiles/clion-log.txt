@@ -1,0 +1,5 @@
+/home/shivababa/clion-2019.1.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/shivababa/CLionProjects/random_experiments
+-- Boost version: 1.67.0
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/shivababa/CLionProjects/random_experiments/cmake-build-debug

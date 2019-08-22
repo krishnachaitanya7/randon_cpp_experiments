@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/shivababa/CLionProjects/random_experiments/main.cpp
+iostream
+-
+cstdlib
+-
+boost/property_tree/ptree.hpp
+-
+boost/property_tree/json_parser.hpp
+-
+

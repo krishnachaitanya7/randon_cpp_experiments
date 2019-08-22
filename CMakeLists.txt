@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.14)
+project(random_experiments)
+set(CMAKE_CXX_STANDARD 14)
+FIND_PACKAGE(Boost 1.67)
+include_directories(${Boost_INCLUDE_DIRS})
+add_executable(random_experiments main.cpp)
+target_link_libraries(random_experiments ${BOOST_LIBRARIES})
