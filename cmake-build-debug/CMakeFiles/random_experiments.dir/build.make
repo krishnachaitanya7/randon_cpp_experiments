@@ -79,11 +79,6 @@ random_experiments_EXTERNAL_OBJECTS =
 
 random_experiments: CMakeFiles/random_experiments.dir/main.cpp.o
 random_experiments: CMakeFiles/random_experiments.dir/build.make
-random_experiments: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-random_experiments: /usr/lib/x86_64-linux-gnu/libboost_system.so
-random_experiments: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-random_experiments: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-random_experiments: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 random_experiments: CMakeFiles/random_experiments.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shine/CLionProjects/randon_cpp_experiments/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable random_experiments"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/random_experiments.dir/link.txt --verbose=$(VERBOSE)
