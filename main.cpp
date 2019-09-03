@@ -1,73 +1,54 @@
-// http://techgate.fr/boost-property-tree/
 #include <iostream>
-#include <cstdlib>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
-namespace pt = boost::property_tree;
+#include "gnuplot-iostream/gnuplot-iostream.h"
 
+int main(){
 
-static std::map<std::string, std::string> airports_codes_map;
-static std::string arrival_port_default {"Select Arrival Airport"};
-static std::string departure_port_default {"Select Departure Airport"};
-// End Global Static Variables
-// Start Constant Declaration. Only edit here
-static int duration_ld {20};
-static int rain_ld {0};
-static int wind_ld {0};
-static std::string day_night_ld = "Day";
-static int duration_md {20};
-static int rain_md {50};
-static int wind_md {50};
-static std::string day_night_md = "Day";
-static int duration_hd {20};
-static int rain_hd {99};
-static int wind_hd {99};
-static std::string day_night_hd = "Day";
-static int rest_seconds {15};
-static std::string low_difficulty {"Low Difficulty"};
-static std::string moderate_difficulty {"Moderate Difficulty"};
-static std::string high_difficulty {"High Difficulty"};
-static std::string insert_tlx {"Fill Out Survey"};
+    Gnuplot gp;
+    // Create a script which can be manually fed into gnuplot later:
+    //    Gnuplot gp(">script.gp");
+    // Create script and also feed to gnuplot:
+    //    Gnuplot gp("tee plot.gp | gnuplot -persist");
+    // Or choose any of those options at runtime by setting the GNUPLOT_IOSTREAM_CMD
+    // environment variable.
 
-void read_airport_conf_file(){
-    pt::ptree root;
-    pt::read_json("/home/shine/CLionProjects/randon_cpp_experiments/airports.json", root);
-    for (pt::ptree::value_type &airport : root){
-        std::string airport_name = airport.first;
-        for(pt::ptree::value_type &airport_contents : root.get_child(airport_name)){
-            std::string airport_code {"Airport_Code"};
-            if(airport_contents.first == airport_code){
-                std::string airport_code = airport_contents.second.data();
-                std::cout << "Airport Code = " << airport_code << std::endl;
-            }
-        }
+    // Gnuplot vectors (i.e. arrows) require four columns: (x,y,dx,dy)
+    std::vector<boost::tuple<double, double, double, double> > pts_A;
+
+    // You can also use a separate container for each column, like so:
+    std::vector<double> pts_B_x;
+    std::vector<double> pts_B_y;
+    std::vector<double> pts_B_dx;
+    std::vector<double> pts_B_dy;
+
+    // You could also use:
+    //   std::vector<std::vector<double> >
+    //   boost::tuple of four std::vector's
+    //   std::vector of std::tuple (if you have C++11)
+    //   arma::mat (with the Armadillo library)
+    //   blitz::Array<blitz::TinyVector<double, 4>, 1> (with the Blitz++ library)
+    // ... or anything of that sort
+
+    for(double alpha=0; alpha<1; alpha+=1.0/24.0) {
+        double theta = alpha*2.0*3.14159;
+        pts_A.push_back(boost::make_tuple(
+                cos(theta),
+                sin(theta),
+                -cos(theta)*0.1,
+                -sin(theta)*0.1
+        ));
+
+        pts_B_x .push_back( cos(theta)*0.8);
+        pts_B_y .push_back( sin(theta)*0.8);
+        pts_B_dx.push_back( sin(theta)*0.1);
+        pts_B_dy.push_back(-cos(theta)*0.1);
     }
-}
 
-void read_conf_file(){
-    pt::ptree root;
-    pt::read_json("/home/shine/CLionProjects/randon_cpp_experiments/xplane.json", root);
-    for (pt::ptree::value_type &each_element : root) {
-        std::string element_name = each_element.first;
-        if(element_name == low_difficulty){
-
-        }
-
-    }
-}
-int main() {
-//    pt::ptree root;
-//    pt::read_json("/home/shivababa/CLionProjects/random_experiments/test.json", root);
-//    int height = root.get<int>("height", -1);
-//    if(height == -1){
-//        std::cout << "No height defined in JSON file" << std::endl;
-//    } else{
-//        std::cout << "Height defined in JSON file: "<< height << std::endl;
-//    }
-//    // Write JSON
-//    pt::ptree write_file_root;
-//    write_file_root.put("height", height);
-//    pt::write_json(std::cout, write_file_root);
+    // Don't forget to put "\n" at the end of each line!
+    gp << "set xrange [-2:2]\nset yrange [-2:2]\n";
+    // '-' means read from stdin.  The send1d() function sends data to gnuplot's stdin.
+    gp << "plot '-' with vectors title 'pts_A', '-' with vectors title 'pts_B'\n";
+    gp.send1d(pts_A);
+    gp.send1d(boost::make_tuple(pts_B_x, pts_B_y, pts_B_dx, pts_B_dy));
 
 
 }
