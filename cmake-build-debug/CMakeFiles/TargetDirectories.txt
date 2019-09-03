@@ -1,3 +1,3 @@
-/home/shivababa/CLionProjects/random_experiments/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/shivababa/CLionProjects/random_experiments/cmake-build-debug/CMakeFiles/random_experiments.dir
-/home/shivababa/CLionProjects/random_experiments/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/shine/CLionProjects/randon_cpp_experiments/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/shine/CLionProjects/randon_cpp_experiments/cmake-build-debug/CMakeFiles/random_experiments.dir
+/home/shine/CLionProjects/randon_cpp_experiments/cmake-build-debug/CMakeFiles/edit_cache.dir

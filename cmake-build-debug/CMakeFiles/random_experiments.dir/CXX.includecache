@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/shivababa/CLionProjects/random_experiments/main.cpp
+/home/shine/CLionProjects/randon_cpp_experiments/main.cpp
 iostream
 -
 cstdlib
